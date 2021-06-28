@@ -1,6 +1,15 @@
 -module(erlang_v8_lib_run).
 
--export([run/2]).
+-export([run/2, pre_run/1, post_run/1, run/3]).
+
+pre_run(Opts) ->
+    HandlerContext = maps:get(handler_context, Opts, #{}),
+    {ok, Worker} = erlang_v8_lib_pool:claim(),
+    {Worker, HandlerContext}.
+
+post_run(Worker) ->
+    erlang_v8_lib_pool:release(Worker),
+    ok.
 
 run(Instructions, Opts) ->
     HandlerContext = maps:get(handler_context, Opts, #{}),
