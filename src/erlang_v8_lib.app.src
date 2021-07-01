@@ -26,13 +26,6 @@
             {erlang_v8_lib, "base.js"}
         ]},
         {modules, [
-            {erlang_v8_lib, "http.js"},
-            {erlang_v8_lib, "ws.js"},
-            {erlang_v8_lib, "console.js"},
-            {erlang_v8_lib, "cert.js"},
-            {erlang_v8_lib, "dns.js"},
-            {erlang_v8_lib, "context.js"},
-            {erlang_v8_lib, "fp_backend_api.js"}
         ]},
         {handlers, [
             {<<"console">>, erlang_v8_stdout_console},

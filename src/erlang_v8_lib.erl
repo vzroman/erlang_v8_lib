@@ -17,8 +17,8 @@ run(Instructions, Opts) when is_map(Opts) ->
 pre_run(Opts) ->
     erlang_v8_lib_run:pre_run(Opts).
 
-post_run(Worker) ->
-    erlang_v8_lib_run:post_run(Worker).
+post_run({Worker, HandlerContext}) ->
+    erlang_v8_lib_run:post_run({Worker, HandlerContext}).
 
 run(Worker, Source, HandlerContext) ->
     erlang_v8_lib_run:run(Worker, [{eval, Source}], HandlerContext).
