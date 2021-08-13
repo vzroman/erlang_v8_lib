@@ -136,7 +136,7 @@ system_code() ->
 %%
 %%            }
 %%        };
-%%        let x = 100;
+%%        let x =  100;
 %%    ">>.
 
 pre_run(Opts) ->
