@@ -1,23 +1,6 @@
 -module(erlang_v8_lib_run).
 
--export([run/2, pre_run/1, post_run/1, run/3]).
-
-system_code() ->
-    SourcePath = code:priv_dir(fp) ++ "/UI/dev/backend_api/fp_backend_api.js",
-    {ok, Api} = file:read_file(SourcePath),
-    Api.
-
-pre_run(Opts) ->
-    HandlerContext = maps:get(handler_context, Opts, #{}),
-    {ok, Worker} = erlang_v8_lib_pool:claim(),
-    ok = erlang_v8_lib_bg_procs:connect(),
-    SystemCode = system_code(),
-    run(Worker, [{eval,SystemCode}], HandlerContext),
-    {Worker, HandlerContext}.
-
-post_run({Worker, _HandlerContext}) ->
-    erlang_v8_lib_pool:release(Worker),
-    ok.
+-export([run/2, run/3]).
 
 run(Instructions, Opts) ->
     HandlerContext = maps:get(handler_context, Opts, #{}),
