@@ -3,7 +3,7 @@
 -export([start_link/0]).
 
 -export([connect/0]).
--export([disconnect/0]).
+-export([disconnect/1]).
 
 -export([init/1]).
 -export([handle_call/3]).
@@ -20,8 +20,8 @@ start_link() ->
 connect() ->
     gen_server:call(?MODULE, {connect, self()}).
 
-disconnect() ->
-    gen_server:call(?MODULE, {disconnect, self()}).
+disconnect(MRef) ->
+    gen_server:call(?MODULE, {disconnect, MRef}).
 
 %% Callbacks
 
