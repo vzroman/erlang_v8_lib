@@ -3,9 +3,6 @@
     {vsn, "rolling"},
     {id, "git"},
     {modules, [
-        erlang_v8_http,
-        erlang_v8_http_taser,
-        erlang_v8_ws,
         erlang_v8_lib,
         erlang_v8_lib_app,
         erlang_v8_lib_bg_procs,
@@ -15,8 +12,7 @@
         erlang_v8_lib_test,
         erlang_v8_lib_utils,
         erlang_v8_lib_vm_sup,
-        erlang_v8_lib_worker,
-        erlang_v8_stdout_console
+        erlang_v8_lib_worker
     ]},
     {registered, [erlang_v8_lib_sup]},
     {applications, [kernel,stdlib,erlang_v8,hackney,taser,gun,oath,lager]},
@@ -28,11 +24,6 @@
         {modules, [
         ]},
         {handlers, [
-            {<<"console">>, erlang_v8_stdout_console},
-            {<<"cert">>, erlang_v8_cert},
-            {<<"ws">>, erlang_v8_ws},
-            {<<"dns">>, erlang_v8_dns},
-            {<<"http">>, erlang_v8_http_taser},
             {<<"fp_js_backend">>, fp_js_backend}
         ]}
     ]}

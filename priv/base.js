@@ -32,6 +32,7 @@ var __internal = {
             } else if (status === 'error') {
                 promise.reject(value);
             }
+            delete __internal.promises[ref];
         }
         return __internal.actions;
     }
