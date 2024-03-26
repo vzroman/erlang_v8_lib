@@ -24,7 +24,7 @@
         {modules, [
         ]},
         {handlers, [
-            {<<"fp_js_backend">>, fp_js_backend}
+            {<<"fp_script_js_backend">>, fp_script_js_backend}
         ]}
     ]}
 ]}.
