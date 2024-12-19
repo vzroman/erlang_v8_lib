@@ -1,5 +1,7 @@
 -module(erlang_v8_lib_bg_procs).
 
+-include("erlang_v8_lib.hrl").
+
 -export([start_link/0]).
 
 -export([connect/0]).
@@ -26,7 +28,7 @@ disconnect(MRef) ->
 %% Callbacks
 
 init([]) ->
-    lager:info("Background process monitor started."),
+    ?LOGINFO("Background process monitor started."),
     {ok, []}.
 
 handle_call({connect, Pid}, _From, State) ->
@@ -47,7 +49,7 @@ handle_info({'DOWN', _MRef, process, _Pid, _Reason}, State) ->
     {noreply, State};
 
 handle_info(Msg, State) ->
-    lager:info("Other: ~p", [Msg]),
+    ?LOGINFO("Other: ~p", [Msg]),
     {noreply, State}.
 
 terminate(_Reason, _State) ->

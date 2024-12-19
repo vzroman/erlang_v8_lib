@@ -15,7 +15,7 @@
         erlang_v8_lib_worker
     ]},
     {registered, [erlang_v8_lib_sup]},
-    {applications, [kernel,stdlib,erlang_v8,hackney,taser,gun,oath,lager]},
+    {applications, [kernel,stdlib,erlang_v8,hackney,taser,gun,oath]},
     {mod, {erlang_v8_lib_app, []}},
     {env, [
         {core, [

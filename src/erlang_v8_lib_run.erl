@@ -1,5 +1,7 @@
 -module(erlang_v8_lib_run).
 
+-include("erlang_v8_lib.hrl").
+
 -export([run/2, run/3]).
 
 run(Instructions, Opts) ->
@@ -81,7 +83,7 @@ unwind(Worker, [[callback, Status, Ref, Args]|T], HandlerContext) ->
     unwind(Worker, Actions ++ T, HandlerContext);
 
 unwind(Worker, [Action|T], HandlerContext) ->
-    lager:error("Unknown instruction: ~p", [Action]),
+    ?LOGERROR("Unknown instruction: ~p", [Action]),
     unwind(Worker, T, HandlerContext).
 
 dispatch_external({_, _, Handlers}, Ref, Args, HandlerIdentifier,
@@ -100,7 +102,7 @@ dispatch_external({_, _, Handlers}, Ref, Args, HandlerIdentifier,
                 {error, Reason} when is_binary(Reason); is_atom(Reason) ->
                     [[callback, <<"error">>, Ref, Reason]];
                 {error, Reason} ->
-                    lager:error("Unknown dispatch error: ~p", [Reason]),
+                    ?LOGERROR("Unknown dispatch error: ~p", [Reason]),
                     [[callback, <<"error">>, Ref, <<"Unknown error.">>]]
             end
     end.
